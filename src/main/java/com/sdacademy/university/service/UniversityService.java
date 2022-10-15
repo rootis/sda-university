@@ -1,18 +1,20 @@
 package com.sdacademy.university.service;
 
 import com.sdacademy.university.model.entity.UniversityEntity;
+import com.sdacademy.university.repository.LecturerRepository;
 import com.sdacademy.university.repository.UniversityRepository;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UniversityService {
 
+    private final LecturerRepository lecturerRepository;
     private final UniversityRepository universityRepository;
 
-    @Autowired
-    public UniversityService(UniversityRepository universityRepository) {
+
+    public UniversityService(LecturerRepository lecturerRepository, UniversityRepository universityRepository) {
+        this.lecturerRepository = lecturerRepository;
         this.universityRepository = universityRepository;
     }
 
@@ -21,12 +23,15 @@ public class UniversityService {
     }
 
     public List<UniversityEntity> getUniversitiesWithLecturers() {
-        /*
-        Get all universities
-        Get all lecturers
-        map them together
-        return list of universities with lecturers
-         */
-        return null;
+        var universities = universityRepository.getUniversities();
+        var lecturers = lecturerRepository.getLecturers();
+
+        universities.forEach(university -> lecturers.forEach(lecturer -> {
+            if (university.getId().equals(lecturer.getUniversityId())) {
+                university.getLecturers().add(lecturer);
+            }
+        }));
+
+        return universities;
     }
 }
