@@ -7,5 +7,6 @@ import lombok.Setter;
 @Setter
 public class UniversityEntity {
 
+    private String code;
     private String title;
 }
