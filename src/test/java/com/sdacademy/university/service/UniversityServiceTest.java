@@ -10,15 +10,26 @@ import com.sdacademy.university.repository.LecturerRepository;
 import com.sdacademy.university.repository.UniversityRepository;
 import java.math.BigDecimal;
 import java.util.List;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class UniversityServiceTest {
 
+    private LecturerRepository mockedLecturerRepository;
+    private UniversityRepository mockedUniversityRepository;
+    private UniversityService universityService;
+
+    @BeforeEach
+    void init() {
+        mockedLecturerRepository = mock(LecturerRepository.class);
+        mockedUniversityRepository = mock(UniversityRepository.class);
+        universityService = new UniversityService(mockedLecturerRepository, mockedUniversityRepository);
+    }
+
     @Test
     void getUniversities() {
         var universities = generateUniversities();
-        var mockedUniversityRepository = mock(UniversityRepository.class);
-        var universityService = new UniversityService(mock(LecturerRepository.class), mockedUniversityRepository);
         when(mockedUniversityRepository.getUniversities()).thenReturn(universities);
 
         var result = universityService.getUniversities();
@@ -30,10 +41,11 @@ class UniversityServiceTest {
     void getUniversitiesWithLecturers() {
         var universities = generateUniversities();
         var lecturers = generateLecturers();
+        // Define that mocked repos should return that data
 
-        // Execute
+        // Execute - call service method
 
-        // Assert
+        // Assert - verify the result
     }
 
     private List<UniversityEntity> generateUniversities() {
