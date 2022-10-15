@@ -13,7 +13,6 @@ class UniversityServiceTest {
 
     @Test
     void getUniversities() {
-        // Prepare
         List<UniversityEntity> universities = List.of(
             UniversityEntity.builder()
                 .code("TU")
@@ -24,10 +23,8 @@ class UniversityServiceTest {
         var universityService = new UniversityService(mockedUniversityRepository);
         when(mockedUniversityRepository.getUniversities()).thenReturn(universities);
 
-        // Execute
         var result = universityService.getUniversities();
 
-        // Verify
         assertEquals(universities, result);
     }
 }
