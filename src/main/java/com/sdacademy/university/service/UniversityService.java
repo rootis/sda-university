@@ -3,6 +3,7 @@ package com.sdacademy.university.service;
 import com.sdacademy.university.model.entity.UniversityEntity;
 import com.sdacademy.university.repository.LecturerRepository;
 import com.sdacademy.university.repository.UniversityRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,9 @@ public class UniversityService {
 
         universities.forEach(university -> lecturers.forEach(lecturer -> {
             if (university.getId().equals(lecturer.getUniversityId())) {
+                if (university.getLecturers() == null) {
+                    university.setLecturers(new ArrayList<>());
+                }
                 university.getLecturers().add(lecturer);
             }
         }));
