@@ -19,4 +19,9 @@ public class UniversityController {
     public List<UniversityEntity> getUniversities() {
         return universityService.getUniversities();
     }
+
+    @GetMapping("/with-lecturers")
+    public List<UniversityEntity> getUniversitiesWithLecturers() {
+        return universityService.getUniversitiesWithLecturers();
+    }
 }

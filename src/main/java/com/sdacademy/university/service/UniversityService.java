@@ -19,4 +19,14 @@ public class UniversityService {
     public List<UniversityEntity> getUniversities() {
         return universityRepository.getUniversities();
     }
+
+    public List<UniversityEntity> getUniversitiesWithLecturers() {
+        /*
+        Get all universities
+        Get all lecturers
+        map them together
+        return list of universities with lecturers
+         */
+        return null;
+    }
 }

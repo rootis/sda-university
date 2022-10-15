@@ -9,10 +9,12 @@ public class UniversityRepository {
 
     private List<UniversityEntity> universities = List.of(
         UniversityEntity.builder()
+            .id(1L)
             .code("KTU")
             .title("Kaunas Technology University")
             .build(),
         UniversityEntity.builder()
+            .id(2L)
             .code("VU")
             .title("Vilnius University")
             .build()
